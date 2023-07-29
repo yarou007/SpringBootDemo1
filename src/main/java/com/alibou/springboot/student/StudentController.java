@@ -18,7 +18,7 @@ public class StudentController {
 	/* tight couple instanciation =>
 	 * private StudentService studentService = new StudentService(); */
 		
-	// loosing couple instanciation
+	// loosing couple instanciation ( il ya plusieurs methode btw ) 
 	@Autowired
 	private StudentService studentService;
 	
