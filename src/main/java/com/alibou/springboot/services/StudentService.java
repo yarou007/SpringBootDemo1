@@ -15,5 +15,11 @@ public interface StudentService {
 	@Autowired
 	private StudentRepository studentRepository;
 	*/
+	
+	 Student save(Student s);
+	 Student findByEmail(String email);
+	 void deleteStudent(String email);
+	 Student updateStudent(Student s);
+	
 	 List<Student> findAllStudent();
 }
