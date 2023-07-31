@@ -12,7 +12,7 @@ import com.alibou.springboot.model.Student;
 @Service
 public class StudentServiceImp implements StudentService{
 
-	// nekhdmou fil doa handcoding fil student dao = repository
+	
 	private final StudentDao studentDao;
 	
 	public StudentServiceImp(StudentDao studentDao) {

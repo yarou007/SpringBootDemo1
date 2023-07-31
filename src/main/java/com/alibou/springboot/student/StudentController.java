@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibou.springboot.model.Student;
+import com.alibou.springboot.repository.StudentRepository;
 import com.alibou.springboot.services.StudentService;
 
 @RestController 
@@ -26,34 +27,40 @@ public class StudentController {
 		
 	// loosing couple instanciation ( il ya plusieurs methode btw ) 
 	
-	@Autowired
-	private StudentService studentService;
 	
+	// @Autowired 
+	// private StudentService studentService; içi nestaamlou fil InMemory data   != lokhra DB data 
+	@Autowired
+	private StudentRepository studentRepository;
+	/*
+	 * Ye testaamel methode hedhi w lekher yetnaha jemla , ye testaamel priamry , ye testaamel @Qualifier("esm el service") fil constructeur => sans utlisation
+	 * de @Autowired 
+	 */
 	
 	@PostMapping
 	public Student StudentSave(@RequestBody Student s) { // avec RequestBody => spring will map ( serialize ) the object as json 	
-		return studentService.save(s);
+		return studentRepository.save(s);
 	}
 	
 	@GetMapping("/{email}")
 	public Student findByEmail(@PathVariable("email") String email) { // avec @PathVariable = on lie el email bel variabel li fil http request
-		return studentService.findByEmail(email);
+		return studentRepository.findByEmail(email);
 	}
 	
 	@GetMapping
 	public List<Student> findAllStudents(){
-		return studentService.findAllStudent();
+		return studentRepository.findAll();
 	}
 	
 	
 	@PutMapping
 	public Student updateStudent(@RequestBody Student s) {
-		return studentService.updateStudent(s);
+		return studentRepository.save(s);
 	}
 	
 	
-	@DeleteMapping("/{email}")
-	public void deleteStudent(@PathVariable("email")  String email) {
-		studentService.deleteStudent(email);
+	@DeleteMapping("/{id}")
+	public void deleteStudent(@PathVariable("id")  Integer id) {
+		studentRepository.deleteById(id);
 	}
 }
